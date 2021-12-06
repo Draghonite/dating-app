@@ -1,3 +1,8 @@
 .dropdown-toggle, .dropdown-item {
     cursor: pointer;
 }
+nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
