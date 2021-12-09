@@ -13,6 +13,9 @@
                     <a class="nav-link" routerLink='/messages' routerLinkActive="active">Messages</a>
                 </li>
             </ng-container>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+            </li>
         </ul>
         <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" style="width: 50%; " (ngSubmit)="login()" autocomplete="off">
             <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" aria-label="Username">
