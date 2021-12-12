@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Data;
 using API.DTOs;
 using API.Entities;
@@ -28,6 +29,18 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDTO>> GetUser(string username) {
             return await userRepository.GetMemberAsync(username);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDTO memberUpdateDTO) {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await userRepository.GetUserByUsernameAsync(username);
+            mapper.Map(memberUpdateDTO, user);
+            userRepository.Update(user);
+            if (await userRepository.SaveAllAsync()) {
+                return NoContent();
+            }
+            return BadRequest("Failed to udpate user");
         }
     }
 }
