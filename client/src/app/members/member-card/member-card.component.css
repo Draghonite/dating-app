@@ -13,8 +13,13 @@
     opacity: 0;
 }
 
+.member-icons button {
+    padding: 5px;
+    font-size: .8rem;
+}
+
 .card-img-wrapper:hover .member-icons {
-    bottom: 0;
+    bottom: -10px;
     opacity: 1;
 }
 
