@@ -15,8 +15,8 @@
     <app-date-input [formControl]="getFormControl('dateOfBirth')" [label]="'Date of Birth'" [maxDate]="maxDate"></app-date-input>
     <app-text-input [formControl]="getFormControl('city')" [label]="'City'"></app-text-input>
     <app-text-input [formControl]="getFormControl('country')" [label]="'Country'"></app-text-input>
-    <app-text-input [formControl]="getFormControl('password')" [label]="'Password'"></app-text-input>
-    <app-text-input [formControl]="getFormControl('confirmPassword')" [label]="'Confirm Password'"></app-text-input>
+    <app-text-input [formControl]="getFormControl('password')" [label]="'Password'" [type]="'password'"></app-text-input>
+    <app-text-input [formControl]="getFormControl('confirmPassword')" [label]="'Confirm Password'" [type]="'password'"></app-text-input>
 
     <div class="row mt-5" *ngIf="validationErrors">
         <ul class="text-danger">
