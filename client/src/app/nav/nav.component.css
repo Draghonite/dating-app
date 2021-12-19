@@ -5,9 +5,10 @@ nav ul {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    font-size: .85rem;
 }
 img {
-    max-height: 50px;
+    max-height: 30px;
     border: 2px solid #fff;
     display: inline;
 }

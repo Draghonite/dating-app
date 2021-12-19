@@ -23,8 +23,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 400:
               if (error.error.errors) {
                 throw Object.values(error.error.errors).flat();
-              } else {
+              } else if (typeof(error.error) === 'object') {
                 this.toastr.error(error.statusText, error.status);
+              } else {
+                this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
