@@ -9,6 +9,9 @@
     </div>
     <div class="card-body p-1 d-flex flex-column align-items-center justify-content-center">
         <h6 class="card-title mb-1" style="font-weight: 600; ">
+            <span [class.is-online]="(presence.onlineUsers$ | async).includes(member.username)">
+                <i class="fa fa-user mr-2"></i>
+            </span>
             {{member.knownAs}}, {{member.age}}
         </h6>
         <div class="card-text text-muted">{{member.city}}</div>
