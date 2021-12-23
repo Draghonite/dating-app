@@ -10,3 +10,16 @@
 input[type=file] {
     color: transparent;
 }
+.image-container .awaiting-approval {
+    position: absolute;
+    top: 20px;
+    color: red;
+    left: 20px;
+    display: none;
+}
+.image-container.is-awaiting-approval img {
+    opacity: .2;
+}
+.image-container.is-awaiting-approval .awaiting-approval {
+    display: inline-block;
+}

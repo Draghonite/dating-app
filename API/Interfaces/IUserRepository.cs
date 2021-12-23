@@ -17,5 +17,6 @@ namespace API.Interfaces
         Task<PagedList<MemberDTO>> GetMembersAsync(UserParams userParams);
         Task<MemberDTO> GetMemberAsync(string username);
         Task<string> GetUserGender(string username);
+        Task<AppUser> GetUserByPhotoId(int id);
     }
 }
