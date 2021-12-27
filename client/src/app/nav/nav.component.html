@@ -18,9 +18,9 @@
             </ng-container>
         </ul>
         <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" style="width: 50%; " (ngSubmit)="login()" autocomplete="off">
-            <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" aria-label="Username">
-            <input name="password" [(ngModel)]="model.password" class="form-control me-2 ml-2" type="password" placeholder="Password" aria-label="Password">
-            <button class="btn btn-success ml-2" type="submit">Login</button>
+            <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" aria-label="Username" required>
+            <input name="password" [(ngModel)]="model.password" class="form-control me-2 ml-2" type="password" placeholder="Password" aria-label="Password" required>
+            <button [disabled]="!loginForm.valid" class="btn btn-success ml-2" type="submit">Login</button>
         </form>
         <div *ngIf="(accountService.currentUser$ | async) as user" class="dropdown" dropdown>
             <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
