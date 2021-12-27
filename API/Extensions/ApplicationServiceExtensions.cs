@@ -24,14 +24,16 @@ namespace API.Extensions
             services.AddDbContext<DataContext>(options => {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-                string connStr;
-
                 // Depending on if in development or production, use either Heroku-provided
                 // connection string, or development connection string from env var.
                 if (env == "Development")
                 {
-                    // Use connection string from file.
-                    connStr = config.GetConnectionString("DefaultConnection");
+                    // Use connection string from file -- if 2 exists, assume sqllite; otherwise Postgresql
+                    if (config.GetConnectionString("DefaultConnection2") != null) {
+                        options.UseSqlite(config.GetConnectionString("DefaultConnection2"));
+                    } else {
+                        options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+                    }
                 }
                 else
                 {
@@ -49,12 +51,9 @@ namespace API.Extensions
                     var pgHost = pgHostPort.Split(":")[0];
                     var pgPort = pgHostPort.Split(":")[1];
 
-                    connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};SSL Mode=Require;TrustServerCertificate=True";
+                    string connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};SSL Mode=Require;TrustServerCertificate=True";                    
+                    options.UseNpgsql(connStr);
                 }
-
-                // Whether the connection string came from the local development configuration file
-                // or from the environment variable from Heroku, use it to set up your DbContext.
-                options.UseNpgsql(connStr);
             });
             return services;
         }
